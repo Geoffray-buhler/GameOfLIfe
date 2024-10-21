@@ -2,6 +2,8 @@
 
 Ce projet permet de créer, prévisualiser et placer des éléments personnalisés sur une grille dans une version du **Jeu de la Vie**.
 
+Vous pouvez l'utiliser directement ici : [https://geoffray-buhler.github.io/GameOfLIfe/](https://geoffray-buhler.github.io/GameOfLIfe/)
+
 ## Fonctionnalités
 
 * **Création d'éléments** : Créez vos propres formes et motifs.
