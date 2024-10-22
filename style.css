@@ -2,6 +2,8 @@ body {
     display: flex;
     flex-direction: row;
     font-family: Arial, sans-serif;
+    background: #000 ;
+    color: #f0f0f0;
   }
 
   canvas {
@@ -18,10 +20,46 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: rgb(71, 71, 71);
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
+  }
+
+  #gridSize{
+    margin-bottom: 1rem;
+  }
+
+  .d-none {
+    display: none;
+  }
+
+  .error{
+    background-color: #f116;
+    color: red;
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+
+  #creationGrid {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+
+  #closeBtn {
+    color: #bdbdbd;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    transition: 1s;
+    background-color: #0000;
+    font-weight: bolder;
+    cursor: pointer;
+  }
+
+  #closeBtn:hover {
+    color: red;
+    transition: 1s;
   }
 
   #overlay {
@@ -43,7 +81,39 @@ body {
   .saved-element {
     margin: 5px 0;
     padding: 5px;
-    border: 1px solid #333;
+    border: 1px solid #dadada;
     cursor: pointer;
-    background-color: #f0f0f0;
+    background-color: #333;
+    transition: 1s;
+  }
+
+  .saved-element:hover {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #dadada;
+    cursor: pointer;
+    color: aqua;
+    background-color: #131313;
+    transition: 1s;
+  }
+
+  .btn-action {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #dadada;
+    cursor: pointer;
+    background-color: #333;
+    color: #dadada;
+    min-width: 10rem;
+    transition: 1s;
+  }
+
+  .btn-action:hover {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #dadada;
+    cursor: pointer;
+    color: aqua;
+    background-color: #131313;
+    transition: 1s;
   }

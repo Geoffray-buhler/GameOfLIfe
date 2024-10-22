@@ -21,8 +21,9 @@ function renderGrid() {
       const cell = grid[row][col];
       ctx.beginPath();
       ctx.rect(col * resolution, row * resolution, resolution, resolution);
-      ctx.fillStyle = cell ? 'black' : 'white';
+      ctx.fillStyle = cell ? 'white' : 'black';
       ctx.fill();
+      ctx.strokeStyle = 'white';
       ctx.stroke();
     }
   }
@@ -108,17 +109,27 @@ const modal = document.getElementById("modal");
 const overlay = document.getElementById("overlay");
 const gridSizeInput = document.getElementById("gridSize");
 const creationGridDiv = document.getElementById("creationGrid");
+const closeBtn = document.getElementById("closeBtn");
 let creationGrid = [];
 let creationGridSize = 5;
+let limit = 30;
+
+
+closeBtn.addEventListener("click", () => {
+  closeModal();
+})
 
 // Ouvre le modal
 document.getElementById("createElementBtn").addEventListener("click", () => {
+  if (creationGridSize > limit) {
+    creationGridSize = 5;
+  }
   openModal();
 });
 
 // Ouvre le modal et initialise la grille de création
 function openModal() {
-  creationGridSize = parseInt(gridSizeInput.value);
+  creationGridSize = Math.min(parseInt(gridSizeInput.value), limit);
   createCreationGrid();
   modal.style.display = "block";
   overlay.style.display = "block";
@@ -136,11 +147,11 @@ function createCreationGrid() {
       cellDiv.style.display = "inline-block";
       cellDiv.style.width = "20px";
       cellDiv.style.height = "20px";
-      cellDiv.style.border = "1px solid black";
-      cellDiv.style.backgroundColor = "white";
+      cellDiv.style.border = "1px solid white";
+      cellDiv.style.backgroundColor = "black";
       cellDiv.addEventListener("click", () => {
         creationGrid[row][col] = creationGrid[row][col] ? 0 : 1;
-        cellDiv.style.backgroundColor = creationGrid[row][col] ? "black" : "white";
+        cellDiv.style.backgroundColor = creationGrid[row][col] ? "white" : "black";
       });
       rowDiv.appendChild(cellDiv);
     }
@@ -148,11 +159,29 @@ function createCreationGrid() {
   }
 }
 
-// Ferme le modal
-overlay.addEventListener("click", () => {
+const closeModal = () => {
   modal.style.display = "none";
   overlay.style.display = "none";
+}
+
+// Ferme le modal
+overlay.addEventListener("click", () => {
+  closeModal();
 });
+
+gridSizeInput.addEventListener("change", (e) => {
+  if (e.target.value > limit) {
+    msg.innerText = "La valeur saisie dépasse la limite autorisée de 30.";
+    msg.classList.add("error");
+    msg.classList.remove("d-none");
+    setTimeout(() => {
+      msg.classList.add("d-none");
+    },6000)
+  }else{
+    creationGridSize = e.target.value;
+    openModal();
+  }
+})
 
 // Sauvegarde l'élément et l'ajoute à la liste sur la droite
 document.getElementById("saveElementBtn").addEventListener("click", () => {
